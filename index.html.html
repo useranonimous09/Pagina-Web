@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Unión Global Contra la Xenofobia | Global Humanity United</title>
+    <!-- Favicon utilizando el logo proporcionado -->
+    <link rel="icon" type="image/jpeg" href="Gemini_Generated_Image_e0qv7ne0qv7ne0qv.jpg">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0a2540',      // Azul marino profundo del emblema
+                            blue: '#1d4ed8',      // Azul vibrante institucional
+                            sky: '#0284c7',       // Azul cielo
+                            lightBlue: '#e0f2fe', // Azul suave
+                            green: '#10b981',     // Verde esperanza y unión
+                            darkGreen: '#059669', // Verde esmeralda profundo
+                            lightGreen: '#d1fae5' // Verde menta claro
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Efecto 3D para las tarjetas Mitos vs Realidades */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+        .card-flipped .transform-style-3d {
+            transform: rotateY(180deg);
+        }
+
+        /* Recorte circular perfecto centrado para el emblema panorámico */
+        .emblem-crop {
+            object-fit: cover;
+            object-position: center center;
+            transform: scale(1.48);
+        }
+
+        /* Animación de notificaciones Toast */
+        @keyframes slideInUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .toast-enter {
+            animation: slideInUp 0.3s ease-out forwards;
+        }
+
+        /* Estilos de impresión para el Certificado */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-certificate, #printable-certificate * {
+                visibility: visible;
+            }
+            #printable-certificate {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                border: 6px double #0a2540 !important;
+                box-shadow: none !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-lightBlue selection:text-brand-navy">
+
+    <!-- 1. BARRA DE PROGRESO SUPERIOR FIJA (LECTURA / SCROLL) -->
+    <div class="fixed top-0 left-0 w-full h-1.5 bg-slate-200/80 z-50">
+        <div id="scroll-progress-bar" class="h-full bg-gradient-to-r from-brand-navy via-brand-blue to-brand-green w-0 transition-all duration-150"></div>
+    </div>
+
+    <!-- 2. BARRA DE NAVEGACIÓN PRINCIPAL -->
+    <header class="sticky top-1.5 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Identidad con el Logo Circular "Unión Global Contra la Xenofobia" -->
+                <div class="flex items-center gap-3.5">
+                    <div class="relative group cursor-pointer" onclick="document.getElementById('logo-upload-input').click()" title="Emblema Unión Global Contra la Xenofobia (Clic para cambiar imagen)">
+                        <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-navy bg-brand-navy shadow-md flex items-center justify-center transition-transform group-hover:scale-105">
+                            <!-- Imagen proporcionada por el usuario -->
+                            <img 
+                                data-brand-logo
+                                src="Gemini_Generated_Image_e0qv7ne0qv7ne0qv.jpg" 
+                                alt="Logo Unión Global Contra la Xenofobia - Global Humanity United" 
+                                class="w-full h-full emblem-crop"
+                                onerror="handleLogoFallback(this)"
+                            >
+                        </div>
+                    </div>
+
+                    <div>
+                        <a href="#" class="font-display font-extrabold text-base sm:text-lg tracking-tight text-brand-navy block leading-tight">
+                            Unión Global Contra la Xenofobia
+                        </a>
+                        <span class="text-[11px] font-bold uppercase tracking-wider bg-gradient-to-r from-brand-blue to-brand-darkGreen bg-clip-text text-transparent block">
+                            Global Humanity United
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Menú de navegación (Escritorio) -->
+                <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-600">
+                    <a href="#galeria" class="hover:text-brand-blue transition-colors">Humanidad Unida</a>
+                    <a href="#mitos" class="hover:text-brand-blue transition-colors">Mitos vs. Realidades</a>
+                    <a href="#videoteca" class="hover:text-brand-blue transition-colors">Videoteca</a>
+                    <a href="#simulador" class="hover:text-brand-blue transition-colors">Simulador</a>
+                    <a href="#muro" class="hover:text-brand-blue transition-colors">Muro Solidario</a>
+                </nav>
+
+                <!-- Controles de Registro / Inicio de Sesión -->
+                <div class="flex items-center gap-2.5">
+                    <!-- Estado Invitado -->
+                    <div id="auth-guest-buttons" class="flex items-center gap-2">
+                        <button onclick="openAuthModal('login')" class="px-3.5 py-2 text-xs sm:text-sm font-bold text-brand-navy hover:bg-brand-lightBlue/70 rounded-xl transition-colors">
+                            Iniciar Sesión
+                        </button>
+                        <button onclick="openAuthModal('register')" class="px-4 py-2 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-brand-blue to-brand-green hover:opacity-95 rounded-xl shadow-sm transition-all">
+                            Registrarse
+                        </button>
+                    </div>
+
+                    <!-- Estado Usuario Autenticado -->
+                    <div id="auth-user-profile" class="hidden flex items-center gap-2.5 bg-slate-100 pl-2.5 pr-2 py-1.5 rounded-2xl border border-slate-200">
+                        <div id="user-avatar-initials" class="w-8 h-8 rounded-xl bg-gradient-to-br from-brand-navy to-brand-green text-white font-bold text-xs flex items-center justify-center shadow-sm">
+                            UG
+                        </div>
+                        <div class="hidden sm:block text-left">
+                            <p id="user-display-name" class="text-xs font-bold text-slate-900 leading-tight">Usuario</p>
+                            <p id="user-display-country" class="text-[10px] text-slate-500 leading-tight">Ciudad / País</p>
+                        </div>
+                        <button onclick="logoutUser()" title="Cerrar Sesión" class="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-white rounded-xl transition-colors">
+                            <i class="ph-bold ph-sign-out text-base"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. BARRA INTERACTIVA DE RUTA DE CONCIENCIACIÓN (0% - 100%) -->
+    <div class="bg-gradient-to-r from-brand-navy via-brand-blue to-brand-darkGreen text-white py-3 px-4 shadow-inner">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5 text-xs sm:text-sm text-center md:text-left">
+                <span class="p-1.5 bg-white/15 rounded-lg text-emerald-300 shrink-0">
+                    <i class="ph-fill ph-compass text-lg"></i>
+                </span>
+                <div>
+                    <span class="font-bold text-white">Ruta de Concienciación:</span>
+                    <span id="awareness-status-text" class="text-sky-100 ml-1">Explora los módulos para desbloquear tu Certificado de Embajador/a.</span>
+                </div>
+            </div>
+            <div class="w-full md:w-80 flex items-center gap-3">
+                <div class="flex-1 h-3 bg-white/20 rounded-full overflow-hidden p-0.5">
+                    <div id="awareness-progress-bar" class="h-full bg-gradient-to-r from-sky-300 via-emerald-300 to-brand-green rounded-full transition-all duration-500" style="width: 0%;"></div>
+                </div>
+                <span id="awareness-percentage" class="font-display font-extrabold text-sm text-emerald-300 min-w-[44px] text-right">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. HERO SECTION CON EL EMBLEMA CIRCULAR CENTRAL -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-white via-sky-50/40 to-white pt-12 pb-20 lg:pt-16 lg:pb-24 border-b border-slate-200/70">
+        <!-- Destellos decorativos -->
+        <div class="absolute top-0 right-0 -translate-y-16 translate-x-1/4 w-[28rem] h-[28rem] bg-brand-lightBlue/60 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-[28rem] h-[28rem] bg-brand-lightGreen/60 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Columna Texto Principal -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-navy text-white text-xs font-bold tracking-wider uppercase shadow-sm">
+                        <i class="ph-fill ph-globe-hemisphere-west text-brand-green text-base"></i>
+                        Global Humanity United • Paz y Fraternidad
+                    </div>
+
+                    <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-brand-navy tracking-tight leading-[1.12]">
+                        Unión Global Contra la <span class="bg-gradient-to-r from-brand-blue to-brand-green bg-clip-text text-transparent">Xenofobia</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Bajo un mismo cielo y sobre una misma Tierra, todas las personas merecemos dignidad, respeto y acogida. Únete a esta plataforma educativa para desmentir prejuicios con datos, practicar la intervención segura y construir comunidades libres de discriminación.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#simulador" class="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-gradient-to-r from-brand-navy via-brand-blue to-brand-green text-white font-bold shadow-lg shadow-brand-blue/20 hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-shield-check text-xl"></i>
+                            Iniciar Entrenamiento
+                        </a>
+                        <button onclick="openAuthModal('register')" class="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-white border-2 border-brand-navy/15 text-brand-navy font-bold hover:border-brand-green hover:text-brand-darkGreen transition-all flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-user-plus text-xl text-brand-green"></i>
+                            Crear Perfil Solidario
+                        </button>
+                    </div>
+
+                    <!-- Pilares del Emblema -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200/80 max-w-lg mx-auto lg:mx-0">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl bg-sky-100 text-brand-blue flex items-center justify-center shrink-0">
+                                <i class="ph-fill ph-bird text-xl"></i>
+                            </div>
+                            <div class="text-left">
+                                <p class="font-display font-bold text-xs text-brand-navy">Paz Activa</p>
+                                <p class="text-[11px] text-slate-500">Convivencia sin odio</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl bg-emerald-100 text-brand-darkGreen flex items-center justify-center shrink-0">
+                                <i class="ph-fill ph-handshake text-xl"></i>
+                            </div>
+                            <div class="text-left">
+                                <p class="font-display font-bold text-xs text-brand-navy">Solidaridad</p>
+                                <p class="text-[11px] text-slate-500">Apoyo mutuo global</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0">
+                                <i class="ph-fill ph-users-three text-xl"></i>
+                            </div>
+                            <div class="text-left">
+                                <p class="font-display font-bold text-xs text-brand-navy">Inclusión</p>
+                                <p class="text-[11px] text-slate-500">Unidos de la mano</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Visual: Emblema Oficial en Grande + Tarjeta de Identidad -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <div class="relative p-4 sm:p-6 rounded-full bg-gradient-to-br from-brand-navy via-brand-blue to-brand-green shadow-2xl">
+                        <div class="w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-white bg-brand-navy shadow-inner flex items-center justify-center">
+                            <img 
+                                data-brand-logo
+                                src="Gemini_Generated_Image_e0qv7ne0qv7ne0qv.jpg" 
+                                alt="Emblema Global Humanity United - Unión Global Contra la Xenofobia" 
+                                class="w-full h-full emblem-crop"
+                                onerror="handleLogoFallback(this)"
+                            >
+                        </div>
+                        <!-- Insignia flotante -->
+                        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white px-5 py-2 rounded-full shadow-lg border border-slate-100 whitespace-nowrap flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-brand-green animate-pulse"></span>
+                            <span class="font-display font-extrabold text-xs text-brand-navy tracking-wide">GLOBAL HUMANITY UNITED</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. GALERÍA VISUAL: ROSTROS DE LA UNIÓN GLOBAL -->
+    <section id="galeria" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-darkGreen bg-brand-lightGreen px-3.5 py-1 rounded-full">Humanidad Compartida</span>
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-navy">La fuerza de caminar tomados de la mano</h2>
+            <p class="text-slate-600">Al igual que en nuestro emblema, cuando distintas culturas se unen, las comunidades florecen en creatividad, economía y empatía.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Imagen 1 -->
+            <article class="bg-white rounded-3xl overflow-hidden shadow-md border border-slate-100 hover:shadow-xl transition-all group">
+                <div class="h-56 overflow-hidden relative">
+                    <img 
+                        src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" 
+                        alt="Jóvenes de distintas culturas abrazados sonriendo"
+                        onerror="this.src='https://placehold.co/600x400/0a2540/ffffff?text=Fraternidad+Sin+Fronteras'"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    >
+                    <span class="absolute top-4 left-4 bg-brand-navy/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full">Fraternidad</span>
+                </div>
+                <div class="p-6 space-y-2.5">
+                    <h3 class="font-display font-bold text-xl text-brand-navy">El encuentro entre culturas</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Conocer a quienes llegan de otros países transforma el miedo a lo desconocido en amistad genuina. Ningún acento ni pasaporte define el valor de un ser humano.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Imagen 2 -->
+            <article class="bg-white rounded-3xl overflow-hidden shadow-md border border-slate-100 hover:shadow-xl transition-all group">
+                <div class="h-56 overflow-hidden relative">
+                    <img 
+                        src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80" 
+                        alt="Manos entrelazadas simbolizando apoyo y paz"
+                        onerror="this.src='https://placehold.co/600x400/10b981/ffffff?text=Acogida+y+Empatia'"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    >
+                    <span class="absolute top-4 left-4 bg-brand-green text-white text-xs font-bold px-3 py-1 rounded-full">Acogida</span>
+                </div>
+                <div class="p-6 space-y-2.5">
+                    <h3 class="font-display font-bold text-xl text-brand-navy">Derechos Humanos universales</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        La Declaración Universal de los Derechos Humanos establece que todos nacemos libres e iguales en dignidad y derechos, sin distinción de origen nacional.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Imagen 3 -->
+            <article class="bg-white rounded-3xl overflow-hidden shadow-md border border-slate-100 hover:shadow-xl transition-all group">
+                <div class="h-56 overflow-hidden relative">
+                    <img 
+                        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" 
+                        alt="Estudiantes colaborando en un entorno inclusivo"
+                        onerror="this.src='https://placehold.co/600x400/1d4ed8/ffffff?text=Educacion+Inclusiva'"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    >
+                    <span class="absolute top-4 left-4 bg-brand-blue text-white text-xs font-bold px-3 py-1 rounded-full">Educación</span>
+                </div>
+                <div class="p-6 space-y-2.5">
+                    <h3 class="font-display font-bold text-xl text-brand-navy">Aulas y barrios libres de odio</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        La educación intercultural desde la niñez y juventud es el antídoto más poderoso contra los estereotipos, el bullying xenófobo y la exclusión social.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- 6. SECCIÓN INTERACTIVA: MITOS VS. REALIDADES (FLIP CARDS) -->
+    <section id="mitos" class="py-16 sm:py-24 bg-gradient-to-b from-sky-50/80 to-emerald-50/50 border-y border-slate-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div class="space-y-2 max-w-2xl">
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-blue bg-brand-lightBlue px-3.5 py-1 rounded-full">Pensamiento Crítico (+15% Progreso)</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-navy">Mitos vs. Realidades sobre la Migración</h2>
+                    <p class="text-slate-600">Haz clic en cada tarjeta para voltearla y descubrir la evidencia que desmonta los discursos xenófobos.</p>
+                </div>
+                <div class="text-sm font-bold text-brand-navy bg-white px-4 py-2.5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-2">
+                    <i class="ph-fill ph-check-circle text-brand-green text-lg"></i>
+                    <span>Tarjetas verificadas: <span id="myths-counter" class="text-brand-blue">0</span> / 3</span>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Mito 1 -->
+                <div class="perspective-1000 h-80 cursor-pointer" onclick="flipMythCard(this, 0)">
+                    <div class="relative w-full h-full transform-style-3d">
+                        <div class="absolute inset-0 backface-hidden bg-white rounded-3xl p-7 shadow-md border-2 border-slate-100 flex flex-col justify-between hover:border-brand-blue/40 transition-colors">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">MITO #1</span>
+                                    <i class="ph-bold ph-arrows-clockwise text-slate-400 text-xl"></i>
+                                </div>
+                                <h3 class="font-display font-bold text-xl text-slate-800 leading-snug">
+                                    "Los migrantes vienen a quitarles los puestos de trabajo a los ciudadanos locales."
+                                </h3>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-blue font-bold text-sm">
+                                <span>Clic para ver la evidencia</span>
+                                <i class="ph-bold ph-arrow-right"></i>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-brand-navy to-brand-blue text-white rounded-3xl p-7 shadow-xl flex flex-col justify-between">
+                            <div>
+                                <span class="px-3 py-1 rounded-full bg-white/20 text-emerald-300 text-xs font-bold inline-block mb-3">REALIDAD COMPROBADA</span>
+                                <p class="text-sm sm:text-base leading-relaxed text-sky-50">
+                                    La economía no es un pastel fijo. Los migrantes consumen bienes, pagan alquiler, fundan emprendimientos que contratan personal local y cubren sectores con escasez laboral.
+                                </p>
+                            </div>
+                            <div class="text-xs text-sky-200 font-semibold flex items-center gap-1.5">
+                                <i class="ph-fill ph-seal-check text-emerald-300 text-base"></i>
+                                Evidencia: OIT & Banco Mundial
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mito 2 -->
+                <div class="perspective-1000 h-80 cursor-pointer" onclick="flipMythCard(this, 1)">
+                    <div class="relative w-full h-full transform-style-3d">
+                        <div class="absolute inset-0 backface-hidden bg-white rounded-3xl p-7 shadow-md border-2 border-slate-100 flex flex-col justify-between hover:border-brand-green/40 transition-colors">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">MITO #2</span>
+                                    <i class="ph-bold ph-arrows-clockwise text-slate-400 text-xl"></i>
+                                </div>
+                                <h3 class="font-display font-bold text-xl text-slate-800 leading-snug">
+                                    "La llegada de extranjeros provoca el aumento de la delincuencia."
+                                </h3>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-darkGreen font-bold text-sm">
+                                <span>Clic para ver la evidencia</span>
+                                <i class="ph-bold ph-arrow-right"></i>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-brand-darkGreen to-emerald-700 text-white rounded-3xl p-7 shadow-xl flex flex-col justify-between">
+                            <div>
+                                <span class="px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold inline-block mb-3">REALIDAD COMPROBADA</span>
+                                <p class="text-sm sm:text-base leading-relaxed text-emerald-50">
+                                    Investigaciones criminológicas demuestran que no existe vínculo causal entre migración e inseguridad. El delito es individual y atribuirlo a toda una nacionalidad es discriminación.
+                                </p>
+                            </div>
+                            <div class="text-xs text-emerald-100 font-semibold flex items-center gap-1.5">
+                                <i class="ph-fill ph-seal-check text-white text-base"></i>
+                                Evidencia: BID & Naciones Unidas
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mito 3 -->
+                <div class="perspective-1000 h-80 cursor-pointer" onclick="flipMythCard(this, 2)">
+                    <div class="relative w-full h-full transform-style-3d">
+                        <div class="absolute inset-0 backface-hidden bg-white rounded-3xl p-7 shadow-md border-2 border-slate-100 flex flex-col justify-between hover:border-brand-blue/40 transition-colors">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">MITO #3</span>
+                                    <i class="ph-bold ph-arrows-clockwise text-slate-400 text-xl"></i>
+                                </div>
+                                <h3 class="font-display font-bold text-xl text-slate-800 leading-snug">
+                                    "Los migrantes usan los servicios públicos sin aportar impuestos al país."
+                                </h3>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-blue font-bold text-sm">
+                                <span>Clic para ver la evidencia</span>
+                                <i class="ph-bold ph-arrow-right"></i>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-sky-700 to-teal-700 text-white rounded-3xl p-7 shadow-xl flex flex-col justify-between">
+                            <div>
+                                <span class="px-3 py-1 rounded-full bg-white/20 text-emerald-200 text-xs font-bold inline-block mb-3">REALIDAD COMPROBADA</span>
+                                <p class="text-sm sm:text-base leading-relaxed text-sky-50">
+                                    Cada compra de alimentos, servicios básicos o transporte genera impuestos al consumo (IVA/IGV). Además, al ser población mayoritariamente joven, aportan más al fisco de lo que demandan.
+                                </p>
+                            </div>
+                            <div class="text-xs text-sky-100 font-semibold flex items-center gap-1.5">
+                                <i class="ph-fill ph-seal-check text-emerald-300 text-base"></i>
+                                Evidencia: OCDE & CEPAL
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. VIDEOTECA EDUCATIVA (VIDEOS PÚBLICOS DE YOUTUBE) -->
+    <section id="videoteca" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-darkGreen bg-brand-lightGreen px-3.5 py-1 rounded-full">Multimedia Educativa (+32% Progreso)</span>
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-navy">Videoteca Contra la Xenofobia</h2>
+            <p class="text-slate-600">Visualiza estas campañas públicas de sensibilización y marca cada video como visto para avanzar en tu ruta de concienciación.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+
+<div class="bg-white rounded-3xl overflow-hidden shadow-md border border-slate-200/80 flex flex-col">
+    <div class="aspect-video w-full bg-brand-navy">
+        <iframe 
+            class="w-full h-full"
+            src="https://www.youtube.com/embed/tOEi0WSCBQ4" 
+            title="Experimento Social"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+        </iframe>
+    </div>
+    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+        <div>
+            <span class="text-[11px] font-bold text-brand-blue uppercase tracking-wider">Caracol Televisión</span>
+            <h3 class="font-display font-bold text-lg text-brand-navy mt-1">Experimento Social</h3>
+            <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">¿Ellos entenderan que la xenofobia no es un juego?</p>
+        </div>
+        <button id="btn-video-0" onclick="toggleVideoWatched(0)" class="w-full py-2.5 px-4 rounded-xl border-2 border-slate-200 text-slate-700 font-bold text-sm hover:border-brand-green hover:text-brand-darkGreen transition-all flex items-center justify-center gap-2">
+            <i class="ph-bold ph-check-circle text-lg"></i>
+            <span>Marcar como visto (+8%)</span>
+        </button>
+    </div>
+</div>
+
+
+            <div class="bg-white rounded-3xl overflow-hidden shadow-md border border-slate-200/80 flex flex-col">
+                <div class="aspect-video w-full bg-brand-navy">
+                    <iframe 
+                        class="w-full h-full"
+                        src="https://www.youtube.com/embed/6ZsXSbqomoc" 
+                        title="¿Qué es la #Xenofobia?"
+                        frameborder="0" 
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <span class="text-[11px] font-bold text-brand-darkGreen uppercase tracking-wider">Viktopoulus</span>
+                        <h3 class="font-display font-bold text-lg text-brand-navy mt-1"> ¿Qué es la #Xenofobia? </h3>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed"> #Xenofobia | Viktopoulus</p>
+                    </div>
+                    <button id="btn-video-1" onclick="toggleVideoWatched(1)" class="w-full py-2.5 px-4 rounded-xl border-2 border-slate-200 text-slate-700 font-bold text-sm hover:border-brand-green hover:text-brand-darkGreen transition-all flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-check-circle text-lg"></i>
+                        <span>Marcar como visto (+8%)</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl overflow-hidden shadow-md border border-slate-200/80 flex flex-col">
+                <div class="aspect-video w-full bg-brand-navy">
+                    <iframe 
+                        class="w-full h-full"
+                        src="https://www.youtube.com/embed/enGf8cQ5BOg" 
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        title="¿Qué es la Xenofobia y cómo combatirla?"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <span class="text-[11px] font-bold text-teal-700 uppercase tracking-wider">Formación Ciudadana</span>
+                        <h3 class="font-display font-bold text-lg text-brand-navy mt-1">Comprendiendo y frenando la xenofobia</h3>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Análisis claro de las manifestaciones cotidianas de discriminación y nuestro deber constitucional de respeto.</p>
+                    </div>
+                    <button id="btn-video-2" onclick="toggleVideoWatched(2)" class="w-full py-2.5 px-4 rounded-xl border-2 border-slate-200 text-slate-700 font-bold text-sm hover:border-brand-green hover:text-brand-darkGreen transition-all flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-check-circle text-lg"></i>
+                        <span>Marcar como visto (+8%)</span>
+                    </button>
+                </div>
+            </div>
+    </section>
+
+    <!-- 8. SIMULADOR DE RESPUESTA ASERTIVA ANTE LA XENOFOBIA -->
+    <section id="simulador" class="py-16 sm:py-24 bg-brand-navy text-white relative overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-blue/25 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-green/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center space-y-3 mb-10">
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-300 bg-white/10 px-3.5 py-1 rounded-full">Entrenamiento Práctico (+33% Progreso)</span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl">Simulador de Intervención Asertiva</h2>
+                <p class="text-sky-100/80 max-w-2xl mx-auto">¿Qué harías si presencias un acto de discriminación? Elige la respuesta más segura, solidaria y efectiva en cada caso.</p>
+            </div>
+
+            <div class="bg-white text-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                    <span id="sim-step-label" class="text-xs font-extrabold uppercase tracking-wider text-brand-blue">Escenario 1 de 3</span>
+                    <div class="flex gap-1.5" id="sim-dots">
+                        <span class="w-8 h-2 rounded-full bg-brand-blue"></span>
+                        <span class="w-8 h-2 rounded-full bg-slate-200"></span>
+                        <span class="w-8 h-2 rounded-full bg-slate-200"></span>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="p-5 rounded-2xl bg-sky-50 border border-sky-100">
+                        <p id="sim-scenario-text" class="font-display font-bold text-lg sm:text-xl text-brand-navy leading-snug">
+                            Cargando escenario...
+                        </p>
+                    </div>
+
+                    <div id="sim-options" class="space-y-3"></div>
+
+                    <div id="sim-feedback" class="hidden p-5 rounded-2xl border text-sm leading-relaxed"></div>
+
+                    <div class="flex justify-end pt-2">
+                        <button id="sim-next-btn" onclick="nextScenario()" class="hidden px-6 py-3 rounded-xl bg-gradient-to-r from-brand-blue to-brand-green text-white font-bold shadow-md hover:opacity-95 transition-all flex items-center gap-2">
+                            <span>Siguiente Escenario</span>
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. MURO DE COMPROMISO SOLIDARIO Y CERTIFICADO OFICIAL -->
+    <section id="muro" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+            
+            <!-- Formulario de Firma y Desbloqueo de Certificado -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/80 space-y-5">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-darkGreen bg-brand-lightGreen px-3 py-1 rounded-full">Acción Comunitaria (+20% Progreso)</span>
+                        <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-brand-navy mt-2">Firma tu Compromiso</h2>
+                        <p class="text-sm text-slate-600 mt-1">Deja un mensaje público a favor de la unión global y el respeto a todas las nacionalidades.</p>
+                    </div>
+
+                    <form onsubmit="submitPledge(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tu Nombre o Alias</label>
+                            <input type="text" id="pledge-name" required placeholder="Ej. Andrea Torres" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Ciudad y País</label>
+                            <input type="text" id="pledge-location" required placeholder="Ej. Lima, Perú" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tu Mensaje de Unión</label>
+                            <textarea id="pledge-message" rows="3" required placeholder="Me comprometo a defender la dignidad de todas las personas sin importar su origen..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-navy via-brand-blue to-brand-green text-white font-bold shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-paper-plane-tilt text-lg"></i>
+                            Publicar en el Muro
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Tarjeta del Certificado Desbloqueable -->
+                <div class="rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-sky-50 to-emerald-50 border-2 border-dashed border-brand-blue/40 text-center space-y-4">
+                    <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-navy bg-brand-navy shadow-md mx-auto">
+                        <img 
+                            data-brand-logo
+                            src="Gemini_Generated_Image_e0qv7ne0qv7ne0qv.jpg" 
+                            alt="Emblema Certificado" 
+                            class="w-full h-full emblem-crop"
+                            onerror="handleLogoFallback(this)"
+                        >
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-lg text-brand-navy">Certificado: Embajador/a de Unión Global</h3>
+                        <p id="cert-lock-msg" class="text-xs text-slate-600 mt-1">Alcanza el 100% en tu Ruta de Concienciación para descargar e imprimir tu certificado oficial.</p>
+                    </div>
+                    <button id="download-cert-btn" onclick="openCertificateModal()" disabled class="w-full py-3 rounded-xl bg-slate-300 text-slate-500 font-bold text-sm cursor-not-allowed transition-all flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-lock-key"></i>
+                        <span>Bloqueado (Completa el 100%)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Muro de Mensajes Solidarios -->
+            <div class="lg:col-span-7 space-y-5">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-display font-bold text-2xl text-brand-navy">Muro de Solidaridad Global</h3>
+                    <span id="pledges-count-badge" class="px-3.5 py-1 rounded-full bg-brand-lightBlue text-brand-navy text-xs font-bold">3 compromisos</span>
+                </div>
+
+                <div id="pledges-wall" class="space-y-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. PIE DE PÁGINA (FOOTER) -->
+    <footer class="bg-brand-navy text-slate-300 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white/80 bg-brand-navy shrink-0">
+                    <img 
+                        data-brand-logo
+                        src="Gemini_Generated_Image_e0qv7ne0qv7ne0qv.jpg" 
+                        alt="Logo Unión Global Contra la Xenofobia" 
+                        class="w-full h-full emblem-crop"
+                        onerror="handleLogoFallback(this)"
+                    >
+                </div>
+                <div>
+                    <p class="font-display font-bold text-white text-base">Unión Global Contra la Xenofobia</p>
+                    <p class="text-xs text-emerald-300 font-semibold">Global Humanity United • Paz, Empatía e Inclusión</p>
+                </div>
+            </div>
+            <p class="text-xs text-center md:text-right text-slate-400">
+                © 2026 Plataforma Educativa por la Fraternidad Humana. Todos los derechos humanos para todas las personas.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL DE REGISTRO E INICIO DE SESIÓN                                  -->
+    <!-- ===================================================================== -->
+    <div id="auth-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-brand-navy/70 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-100">
+            <div class="bg-gradient-to-r from-brand-navy via-brand-blue to-brand-green p-6 text-white flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-full overflow-hidden border-2 border-white bg-brand-navy shrink-0">
+                        <img 
+                            data-brand-logo
+                            src="Gemini_Generated_Image_e0qv7ne0qv7ne0qv.jpg" 
+                            alt="Logo" 
+                            class="w-full h-full emblem-crop"
+                            onerror="handleLogoFallback(this)"
+                        >
+                    </div>
+                    <div>
+                        <h3 class="font-display font-extrabold text-lg leading-tight">Únete a la Unión Global</h3>
+                        <p class="text-xs text-sky-100">Guarda tu progreso y personaliza tu certificado</p>
+                    </div>
+                </div>
+                <button onclick="closeAuthModal()" class="p-1.5 rounded-xl bg-white/15 hover:bg-white/25 transition-colors">
+                    <i class="ph-bold ph-x text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Pestañas -->
+            <div class="grid grid-cols-2 border-b border-slate-100 bg-slate-50 p-1.5 gap-1.5">
+                <button id="tab-login" onclick="switchAuthTab('login')" class="py-2.5 rounded-xl text-sm font-bold bg-white text-brand-navy shadow-sm transition-all">
+                    Iniciar Sesión
+                </button>
+                <button id="tab-register" onclick="switchAuthTab('register')" class="py-2.5 rounded-xl text-sm font-bold text-slate-500 hover:text-slate-800 transition-all">
+                    Registrarse
+                </button>
+            </div>
+
+            <!-- Formulario Iniciar Sesión -->
+            <form id="form-login" onsubmit="handleLogin(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Correo Electrónico</label>
+                    <input type="email" id="login-email" required placeholder="tu@correo.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Contraseña</label>
+                    <input type="password" id="login-password" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                </div>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-navy hover:bg-brand-blue text-white font-bold shadow-md transition-colors">
+                    Iniciar Sesión
+                </button>
+            </form>
+
+            <!-- Formulario Registrarse -->
+            <form id="form-register" onsubmit="handleRegister(event)" class="hidden p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nombre Completo</label>
+                    <input type="text" id="reg-name" required placeholder="Ej. Mateo Silva" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Correo Electrónico</label>
+                    <input type="email" id="reg-email" required placeholder="mateo@correo.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Ciudad y País</label>
+                    <input type="text" id="reg-country" required placeholder="Ej. Lima, Perú" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Contraseña</label>
+                    <input type="password" id="reg-password" required minlength="4" placeholder="Mínimo 4 caracteres" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                </div>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-blue to-brand-green text-white font-bold shadow-md hover:opacity-95 transition-all">
+                    Crear Cuenta Gratuita
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL DEL CERTIFICADO OFICIAL                                         -->
+    <!-- ===================================================================== -->
+    <div id="cert-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-brand-navy/80 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-2 shadow-2xl">
+            <div id="printable-certificate" class="border-4 border-double border-brand-navy rounded-2xl p-8 text-center bg-gradient-to-br from-white via-sky-50/50 to-emerald-50/50 space-y-5 relative">
+                <button onclick="closeCertificateModal()" class="no-print absolute top-4 right-4 text-slate-400 hover:text-slate-700">
+                    <i class="ph-bold ph-x text-xl"></i>
+                </button>
+
+                <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-brand-navy bg-brand-navy shadow-lg">
+                    <img 
+                        data-brand-logo
+                        src="Gemini_Generated_Image_e0qv7ne0qv7ne0qv.jpg" 
+                        alt="Emblema Unión Global Contra la Xenofobia" 
+                        class="w-full h-full emblem-crop"
+                        onerror="handleLogoFallback(this)"
+                    >
+                </div>
+
+                <div>
+                    <p class="text-xs font-extrabold uppercase tracking-widest text-brand-darkGreen">Global Humanity United</p>
+                    <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-brand-navy mt-1">Certificado de Embajador/a Contra la Xenofobia</h3>
+                </div>
+
+                <p class="text-sm text-slate-600">Se otorga el presente reconocimiento oficial a:</p>
+
+                <p id="cert-recipient-name" class="font-display font-extrabold text-2xl text-brand-blue border-b-2 border-brand-green inline-block px-8 pb-1">
+                    Ciudadano/a Comprometido/a
+                </p>
+
+                <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                    Por haber completado el 100% de la Ruta de Concienciación, verificación de hechos, entrenamiento de respuesta asertiva y compromiso solidario en <strong>Unión Global Contra la Xenofobia</strong>.
+                </p>
+
+                <div class="pt-3 flex justify-center gap-3 no-print">
+                    <button onclick="window.print()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-navy to-brand-blue text-white font-bold text-sm hover:opacity-95 transition-all flex items-center gap-2 shadow-md">
+                        <i class="ph-bold ph-printer text-lg"></i>
+                        Imprimir / Guardar PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR DE NOTIFICACIONES TOAST -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 max-w-sm"></div>
+
+    <!-- ===================================================================== -->
+    <!-- SCRIPT DE INTERACTIVIDAD, PROGRESO Y PERSISTENCIA                     -->
+    <!-- ===================================================================== -->
+    <script>
+        const APP_STORAGE_KEY = 'union_global_xenofobia_state_v2';
+        const USERS_STORAGE_KEY = 'union_global_xenofobia_users_v2';
+
+        // Recreación SVG en Data URI del emblema "GLOBAL HUMANITY UNITED - UNIÓN GLOBAL CONTRA LA XENOFOBIA"
+        // Se activa automáticamente SOLO si el archivo local Gemini_Generated_Image_e0qv7ne0qv7ne0qv.jpg no se encuentra en la carpeta
+        const EMBLEM_FALLBACK_SVG = "data:image/svg+xml;utf8," + encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+                <defs>
+                    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#133b66"/>
+                        <stop offset="100%" stop-color="#0a2540"/>
+                    </radialGradient>
+                    <path id="topArc" d="M 36,150 A 114,114 0 1,1 264,150" />
+                    <path id="bottomArc" d="M 32,155 A 118,118 0 0,0 268,155" />
+                </defs>
+                <circle cx="150" cy="150" r="146" fill="url(#bgGrad)" stroke="#e0f2fe" stroke-width="5"/>
+                <circle cx="150" cy="150" r="102" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.4"/>
+                <!-- Globo terráqueo central -->
+                <circle cx="150" cy="145" r="56" fill="#38bdf8"/>
+                <path d="M115,125 Q130,110 145,120 T165,135 Q155,155 135,160 T115,125 Z" fill="#10b981"/>
+                <path d="M165,115 Q185,115 190,135 T175,165 Q160,155 165,115 Z" fill="#10b981"/>
+                <!-- Símbolos superiores: Paloma, Paz, Manos -->
+                <circle cx="150" cy="74" r="9" fill="none" stroke="#bae6fd" stroke-width="2"/>
+                <line x1="150" y1="65" x2="150" y2="83" stroke="#bae6fd" stroke-width="2"/>
+                <line x1="150" y1="74" x2="144" y2="80" stroke="#bae6fd" stroke-width="2"/>
+                <line x1="150" y1="74" x2="156" y2="80" stroke="#bae6fd" stroke-width="2"/>
+                <path d="M115,76 Q123,68 130,75 Q123,80 115,76 Z" fill="#ffffff"/>
+                <circle cx="178" cy="75" r="7" fill="#f59e0b"/>
+                <!-- Cadena de personas unidas de la mano -->
+                <g stroke="#ffffff" stroke-width="3" stroke-linecap="round">
+                    <circle cx="96" cy="172" r="5" fill="#fbbf24" stroke="none"/>
+                    <circle cx="114" cy="184" r="5" fill="#34d399" stroke="none"/>
+                    <circle cx="132" cy="191" r="5" fill="#60a5fa" stroke="none"/>
+                    <circle cx="150" cy="193" r="5" fill="#f87171" stroke="none"/>
+                    <circle cx="168" cy="191" r="5" fill="#a78bfa" stroke="none"/>
+                    <circle cx="186" cy="184" r="5" fill="#fbbf24" stroke="none"/>
+                    <circle cx="204" cy="172" r="5" fill="#34d399" stroke="none"/>
+                    <path d="M90,180 Q150,212 210,180" fill="none" stroke="#10b981" stroke-width="5"/>
+                </g>
+                <!-- Textos circulares -->
+                <text fill="#ffffff" font-family="sans-serif" font-size="14.5" font-weight="800" letter-spacing="1.5">
+                    <textPath href="#topArc" startOffset="50%" text-anchor="middle">GLOBAL HUMANITY UNITED</textPath>
+                </text>
+                <rect x="82" y="212" width="136" height="20" rx="10" fill="#ffffff"/>
+                <text x="150" y="226" fill="#0a2540" font-family="sans-serif" font-size="11" font-weight="800" text-anchor="middle">UNIÓN GLOBAL</text>
+                <text fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="800" letter-spacing="1.2">
+                    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">CONTRA LA XENOFOBIA</textPath>
+                </text>
+            </svg>
+        `);
+
+        let appState = {
+            currentUser: null,
+            customLogoDataUrl: null,
+            mythsFlipped: [false, false, false],       // 3 * 5% = 15%
+            videosWatched: [false, false, false, false], // 4 * 8% = 32%
+            scenariosCompleted: [false, false, false], // 3 * 11% = 33%
+            pledgeSigned: false,                       // 20%  (Total = 100%)
+            pledges: [
+                {
+                    name: "Valeria Rojas",
+                    location: "Bogotá, Colombia",
+                    message: "Todos somos parte de una misma humanidad. El respeto y la solidaridad siempre serán más fuertes que cualquier frontera.",
+                    date: "Hace 2 horas"
+                },
+                {
+                    name: "Carlos Mendoza",
+                    location: "Lima, Perú",
+                    message: "En mi comunidad abrazamos la diversidad cultural. No al odio, sí a la empatía y al trabajo conjunto.",
+                    date: "Hace 5 horas"
+                },
+                {
+                    name: "Sofía Hernández",
+                    location: "Ciudad de México, México",
+                    message: "Me comprometo a frenar las noticias falsas y defender con respeto a cualquier persona que sufra discriminación.",
+                    date: "Ayer"
+                }
+            ]
+        };
+
+        const scenarios = [
+            {
+                question: "En el transporte público, un pasajero comienza a insultar por su nacionalidad a una madre migrante que viaja con su hijo. ¿Cuál es la acción más segura y efectiva?",
+                options: [
+                    {
+                        text: "Ignorar la escena mirando el celular para evitar involucrarte.",
+                        isCorrect: false,
+                        feedback: "El silencio deja a la víctima desprotegida y valida la conducta del agresor."
+                    },
+                    {
+                        text: "Acercarte a la madre con calma, saludarla amablemente, sentarte junto a ella y acompañarla sin confrontar agresivamente al atacante.",
+                        isCorrect: true,
+                        feedback: "¡Excelente elección! El acompañamiento activo protege a la persona agredida y desactiva la hostilidad sin escalar la violencia."
+                    },
+                    {
+                        text: "Gritar e insultar de vuelta al agresor para darle una lección.",
+                        isCorrect: false,
+                        feedback: "Responder con violencia verbal puede desencadenar una agresión física y poner en peligro a los pasajeros."
+                    }
+                ]
+            },
+            {
+                question: "En un grupo de vecinos en redes sociales, alguien difunde un rumor falso culpando a los extranjeros de un robo ocurrido en otra ciudad. ¿Cómo intervienes?",
+                options: [
+                    {
+                        text: "Reenviar el mensaje a otros grupos para alertar por si acaso.",
+                        isCorrect: false,
+                        feedback: "Compartir información no verificada propaga el miedo y alimenta la xenofobia colectiva."
+                    },
+                    {
+                        text: "Compartir con respeto la fuente oficial que desmiente el bulo y recordar que los delitos son responsabilidad individual, nunca de toda una nacionalidad.",
+                        isCorrect: true,
+                        feedback: "¡Muy bien! Cortar la cadena de desinformación con datos reales ayuda a que la comunidad mantenga la objetividad."
+                    },
+                    {
+                        text: "Darle 'Me gusta' para no quedar mal con los vecinos.",
+                        isCorrect: false,
+                        feedback: "Apoyar mensajes discriminatorios refuerza los prejuicios en tu entorno."
+                    }
+                ]
+            },
+            {
+                question: "En tu centro de estudios o trabajo, varios compañeros se burlan constantemente del acento y costumbres de un integrante extranjero. ¿Qué haces?",
+                options: [
+                    {
+                        text: "Reírte con el grupo para evitar quedarte fuera.",
+                        isCorrect: false,
+                        feedback: "La complicidad normaliza el acoso laboral o escolar."
+                    },
+                    {
+                        text: "Expresar con firmeza y respeto que las burlas por el origen no son aceptables, e incluir activamente al compañero en el equipo.",
+                        isCorrect: true,
+                        feedback: "¡Acción ejemplar! Poner límites claros y brindar inclusión real transforma la cultura de cualquier espacio."
+                    },
+                    {
+                        text: "Decirle al afectado que no haga caso porque 'así es la gente aquí'.",
+                        isCorrect: false,
+                        feedback: "Minimizar la discriminación invalida el derecho de toda persona a ser tratada con dignidad."
+                    }
+                ]
+            }
+        ];
+
+        let currentScenarioIndex = 0;
+
+        // --- INICIALIZACIÓN ---
+        window.onload = function() {
+            loadStateFromStorage();
+            setupScrollProgressBar();
+            renderAuthUI();
+            renderMythsState();
+            renderVideosState();
+            renderScenario();
+            renderPledgesWall();
+            updateAwarenessProgress();
+        };
+
+        // --- MANEJO DE LOGO (ARCHIVO LOCAL + RESPALDO SVG + SUBIDA MANUAL) ---
+        function handleLogoFallback(imgElement) {
+            // Evitar bucle infinito
+            imgElement.onerror = null;
+            // Si el usuario subió un logo personalizado, usar ese; si no, usar el SVG fiel del emblema
+            if (appState.customLogoDataUrl) {
+                imgElement.src = appState.customLogoDataUrl;
+                imgElement.classList.remove('emblem-crop');
+            } else {
+                imgElement.src = EMBLEM_FALLBACK_SVG;
+                imgElement.classList.remove('emblem-crop');
+            }
+        }
+
+        function handleLogoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                showToast('Selecciona un archivo de imagen válido (JPG, PNG, SVG).', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const dataUrl = e.target.result;
+                appState.customLogoDataUrl = dataUrl;
+                applyLogoToAllElements(dataUrl, false);
+                saveStateToStorage();
+                showToast('¡Emblema actualizado en toda la página!', 'success');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function applyLogoToAllElements(srcUrl, useCrop = true) {
+            document.querySelectorAll('[data-brand-logo]').forEach(img => {
+                img.src = srcUrl;
+                if (useCrop) {
+                    img.classList.add('emblem-crop');
+                } else {
+                    img.classList.remove('emblem-crop');
+                }
+            });
+        }
+
+        // --- PERSISTENCIA EN LOCALSTORAGE ---
+        function loadStateFromStorage() {
+            try {
+                const saved = localStorage.getItem(APP_STORAGE_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    appState = { ...appState, ...parsed };
+                }
+                if (appState.customLogoDataUrl) {
+                    applyLogoToAllElements(appState.customLogoDataUrl, false);
+                }
+            } catch (e) {
+                console.error("Error leyendo almacenamiento:", e);
+            }
+        }
+
+        function saveStateToStorage() {
+            try {
+                localStorage.setItem(APP_STORAGE_KEY, JSON.stringify(appState));
+            } catch (e) {
+                console.error("Error guardando almacenamiento:", e);
+            }
+        }
+
+        // --- NOTIFICACIONES TOAST ---
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const styles = {
+                success: 'bg-emerald-600 text-white border-emerald-500',
+                error: 'bg-rose-600 text-white border-rose-500',
+                info: 'bg-brand-navy text-white border-brand-blue'
+            };
+
+            const icons = {
+                success: 'ph-check-circle',
+                error: 'ph-warning-circle',
+                info: 'ph-info'
+            };
+
+            toast.className = `toast-enter flex items-center gap-3 px-4 py-3.5 rounded-2xl shadow-xl border text-sm font-medium ${styles[type] || styles.info}`;
+            toast.innerHTML = `
+                <i class="ph-fill ${icons[type] || icons.info} text-xl shrink-0"></i>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // --- BARRA DE PROGRESO DE LECTURA (SCROLL) ---
+        function setupScrollProgressBar() {
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                document.getElementById('scroll-progress-bar').style.width = `${Math.min(100, Math.max(0, percent))}%`;
+            });
+        }
+
+        // --- CÁLCULO DE PROGRESO DE CONCIENCIACIÓN ---
+        function updateAwarenessProgress() {
+            let score = 0;
+            // Mitos: 3 * 5% = 15%
+            score += appState.mythsFlipped.filter(Boolean).length * 5;
+            // Videos: 4 * 8% = 32%
+            score += appState.videosWatched.filter(Boolean).length * 8;
+            // Simulador: 3 * 11% = 33%
+            score += appState.scenariosCompleted.filter(Boolean).length * 11;
+            // Compromiso: 20%
+            if (appState.pledgeSigned) score += 20;
+
+            score = Math.min(100, score);
+
+            document.getElementById('awareness-progress-bar').style.width = `${score}%`;
+            document.getElementById('awareness-percentage').textContent = `${score}%`;
+
+            const statusText = document.getElementById('awareness-status-text');
+            const certBtn = document.getElementById('download-cert-btn');
+            const certMsg = document.getElementById('cert-lock-msg');
+
+            if (score === 100) {
+                statusText.textContent = "¡Meta alcanzada! Has desbloqueado tu Certificado de Embajador/a Contra la Xenofobia.";
+                certBtn.disabled = false;
+                certBtn.className = "w-full py-3 rounded-xl bg-gradient-to-r from-brand-navy via-brand-blue to-brand-green text-white font-bold text-sm shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2 cursor-pointer";
+                certBtn.innerHTML = `<i class="ph-bold ph-certificate text-lg"></i><span>Ver y Descargar Certificado</span>`;
+                certMsg.textContent = "¡Felicidades! Tu compromiso con la Unión Global Contra la Xenofobia está certificado.";
+            } else {
+                statusText.textContent = `Progreso actual: ${score}%. Completa los mitos, videos, simulador y firma el muro.`;
+            }
+        }
+
+        // --- REGISTRO E INICIO DE SESIÓN ---
+        function openAuthModal(tab = 'login') {
+            const modal = document.getElementById('auth-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            switchAuthTab(tab);
+        }
+
+        function closeAuthModal() {
+            const modal = document.getElementById('auth-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function switchAuthTab(tab) {
+            const tabLogin = document.getElementById('tab-login');
+            const tabRegister = document.getElementById('tab-register');
+            const formLogin = document.getElementById('form-login');
+            const formRegister = document.getElementById('form-register');
+
+            if (tab === 'login') {
+                tabLogin.className = "py-2.5 rounded-xl text-sm font-bold bg-white text-brand-navy shadow-sm transition-all";
+                tabRegister.className = "py-2.5 rounded-xl text-sm font-bold text-slate-500 hover:text-slate-800 transition-all";
+                formLogin.classList.remove('hidden');
+                formRegister.classList.add('hidden');
+            } else {
+                tabRegister.className = "py-2.5 rounded-xl text-sm font-bold bg-white text-brand-darkGreen shadow-sm transition-all";
+                tabLogin.className = "py-2.5 rounded-xl text-sm font-bold text-slate-500 hover:text-slate-800 transition-all";
+                formRegister.classList.remove('hidden');
+                formLogin.classList.add('hidden');
+            }
+        }
+
+        function getUsers() {
+            try {
+                return JSON.parse(localStorage.getItem(USERS_STORAGE_KEY)) || [];
+            } catch {
+                return [];
+            }
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim().toLowerCase();
+            const country = document.getElementById('reg-country').value.trim();
+            const password = document.getElementById('reg-password').value;
+
+            const users = getUsers();
+            if (users.some(u => u.email === email)) {
+                showToast('Este correo ya está registrado. Por favor inicia sesión.', 'error');
+                switchAuthTab('login');
+                return;
+            }
+
+            users.push({ name, email, country, password });
+            localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
+
+            appState.currentUser = { name, email, country };
+            saveStateToStorage();
+            renderAuthUI();
+            closeAuthModal();
+            showToast(`¡Bienvenido/a a Global Humanity United, ${name}!`, 'success');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value.trim().toLowerCase();
+            const password = document.getElementById('login-password').value;
+
+            const users = getUsers();
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (!user) {
+                showToast('Credenciales incorrectas. Si aún no tienes cuenta, regístrate.', 'error');
+                return;
+            }
+
+            appState.currentUser = { name: user.name, email: user.email, country: user.country };
+            saveStateToStorage();
+            renderAuthUI();
+            closeAuthModal();
+            showToast(`¡Qué alegría verte de nuevo, ${user.name}!`, 'success');
+        }
+
+        function logoutUser() {
+            appState.currentUser = null;
+            saveStateToStorage();
+            renderAuthUI();
+            showToast('Sesión cerrada correctamente.', 'info');
+        }
+
+        function renderAuthUI() {
+            const guestBtns = document.getElementById('auth-guest-buttons');
+            const userProfile = document.getElementById('auth-user-profile');
+
+            if (appState.currentUser) {
+                guestBtns.classList.add('hidden');
+                userProfile.classList.remove('hidden');
+
+                const { name, country } = appState.currentUser;
+                const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+                document.getElementById('user-avatar-initials').textContent = initials;
+                document.getElementById('user-display-name').textContent = name;
+                document.getElementById('user-display-country').textContent = country;
+
+                document.getElementById('pledge-name').value = name;
+                document.getElementById('pledge-location').value = country;
+                document.getElementById('cert-recipient-name').textContent = name;
+            } else {
+                guestBtns.classList.remove('hidden');
+                userProfile.classList.add('hidden');
+            }
+        }
+
+        // --- MITOS VS REALIDADES ---
+        function flipMythCard(cardEl, index) {
+            cardEl.classList.toggle('card-flipped');
+            if (!appState.mythsFlipped[index]) {
+                appState.mythsFlipped[index] = true;
+                saveStateToStorage();
+                updateAwarenessProgress();
+                showToast('¡Mito desmentido! +5% en tu Ruta de Concienciación.', 'success');
+            }
+            document.getElementById('myths-counter').textContent = appState.mythsFlipped.filter(Boolean).length;
+        }
+
+        function renderMythsState() {
+            document.getElementById('myths-counter').textContent = appState.mythsFlipped.filter(Boolean).length;
+        }
+
+        // --- VIDEOTECA ---
+        function toggleVideoWatched(index) {
+            appState.videosWatched[index] = !appState.videosWatched[index];
+            saveStateToStorage();
+            renderVideosState();
+            updateAwarenessProgress();
+
+            if (appState.videosWatched[index]) {
+                showToast('¡Video completado! +8% en tu progreso.', 'success');
+            }
+        }
+
+        function renderVideosState() {
+            appState.videosWatched.forEach((watched, idx) => {
+                const btn = document.getElementById(`btn-video-${idx}`);
+                if (!btn) return;
+                if (watched) {
+                    btn.className = "w-full py-2.5 px-4 rounded-xl bg-brand-lightGreen border-2 border-brand-green text-brand-darkGreen font-bold text-sm transition-all flex items-center justify-center gap-2";
+                    btn.innerHTML = `<i class="ph-fill ph-check-circle text-lg"></i><span>Video Visto ✓</span>`;
+                } else {
+                    btn.className = "w-full py-2.5 px-4 rounded-xl border-2 border-slate-200 text-slate-700 font-bold text-sm hover:border-brand-green hover:text-brand-darkGreen transition-all flex items-center justify-center gap-2";
+                    btn.innerHTML = `<i class="ph-bold ph-check-circle text-lg"></i><span>Marcar como visto (+8%)</span>`;
+                }
+            });
+        }
+
+        // --- SIMULADOR DE RESPUESTA ASERTIVA ---
+        function renderScenario() {
+            const scenario = scenarios[currentScenarioIndex];
+            document.getElementById('sim-step-label').textContent = `Escenario ${currentScenarioIndex + 1} de ${scenarios.length}`;
+            document.getElementById('sim-scenario-text').textContent = scenario.question;
+
+            const dotsContainer = document.getElementById('sim-dots');
+            dotsContainer.innerHTML = scenarios.map((_, idx) => {
+                const active = idx === currentScenarioIndex ? 'bg-brand-blue' : (appState.scenariosCompleted[idx] ? 'bg-brand-green' : 'bg-slate-200');
+                return `<span class="w-8 h-2 rounded-full ${active} transition-colors"></span>`;
+            }).join('');
+
+            const optionsContainer = document.getElementById('sim-options');
+            optionsContainer.innerHTML = scenario.options.map((opt, idx) => `
+                <button onclick="selectScenarioOption(${idx})" class="w-full text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-brand-blue hover:bg-sky-50/60 transition-all font-medium text-sm sm:text-base text-slate-700 flex items-start gap-3">
+                    <span class="w-7 h-7 rounded-lg bg-slate-100 text-brand-navy font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">${String.fromCharCode(65 + idx)}</span>
+                    <span>${opt.text}</span>
+                </button>
+            `).join('');
+
+            document.getElementById('sim-feedback').classList.add('hidden');
+            document.getElementById('sim-next-btn').classList.add('hidden');
+        }
+
+        function selectScenarioOption(optionIndex) {
+            const scenario = scenarios[currentScenarioIndex];
+            const chosen = scenario.options[optionIndex];
+            const feedbackEl = document.getElementById('sim-feedback');
+
+            feedbackEl.classList.remove('hidden');
+            if (chosen.isCorrect) {
+                feedbackEl.className = "p-5 rounded-2xl border border-emerald-200 bg-emerald-50 text-emerald-950 text-sm leading-relaxed";
+                feedbackEl.innerHTML = `<div class="flex items-start gap-2.5"><i class="ph-fill ph-check-circle text-brand-darkGreen text-xl shrink-0"></i><div><strong>¡Intervención Segura y Solidaria!</strong><p class="mt-1">${chosen.feedback}</p></div></div>`;
+                
+                if (!appState.scenariosCompleted[currentScenarioIndex]) {
+                    appState.scenariosCompleted[currentScenarioIndex] = true;
+                    saveStateToStorage();
+                    updateAwarenessProgress();
+                    showToast('¡Escenario superado! +11% en tu progreso.', 'success');
+                }
+            } else {
+                feedbackEl.className = "p-5 rounded-2xl border border-amber-200 bg-amber-50 text-amber-950 text-sm leading-relaxed";
+                feedbackEl.innerHTML = `<div class="flex items-start gap-2.5"><i class="ph-fill ph-warning-circle text-amber-600 text-xl shrink-0"></i><div><strong>Analicemos otra alternativa:</strong><p class="mt-1">${chosen.feedback}</p></div></div>`;
+            }
+
+            const nextBtn = document.getElementById('sim-next-btn');
+            nextBtn.classList.remove('hidden');
+            nextBtn.querySelector('span').textContent = currentScenarioIndex < scenarios.length - 1 ? 'Siguiente Escenario' : 'Repasar Escenario 1';
+        }
+
+        function nextScenario() {
+            currentScenarioIndex = (currentScenarioIndex + 1) % scenarios.length;
+            renderScenario();
+        }
+
+        // --- MURO DE SOLIDARIDAD ---
+        function submitPledge(event) {
+            event.preventDefault();
+            const name = document.getElementById('pledge-name').value.trim();
+            const location = document.getElementById('pledge-location').value.trim();
+            const message = document.getElementById('pledge-message').value.trim();
+
+            if (!name || !location || !message) return;
+
+            appState.pledges.unshift({
+                name,
+                location,
+                message,
+                date: "Justo ahora"
+            });
+
+            if (!appState.pledgeSigned) {
+                appState.pledgeSigned = true;
+                showToast('¡Compromiso publicado! +20% en tu Ruta de Concienciación.', 'success');
+            } else {
+                showToast('¡Gracias por sumar tu voz al muro solidario!', 'success');
+            }
+
+            document.getElementById('pledge-message').value = '';
+            document.getElementById('cert-recipient-name').textContent = name;
+
+            saveStateToStorage();
+            renderPledgesWall();
+            updateAwarenessProgress();
+        }
+
+        function renderPledgesWall() {
+            const wall = document.getElementById('pledges-wall');
+            document.getElementById('pledges-count-badge').textContent = `${appState.pledges.length} compromisos`;
+
+            wall.innerHTML = appState.pledges.map(item => {
+                const initials = item.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                return `
+                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 hover:border-brand-blue/40 transition-colors">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-navy via-brand-blue to-brand-green text-white font-bold text-xs flex items-center justify-center shadow-sm">
+                                    ${initials}
+                                </div>
+                                <div>
+                                    <h4 class="font-display font-bold text-sm text-brand-navy">${escapeHTML(item.name)}</h4>
+                                    <p class="text-xs text-slate-500 flex items-center gap-1">
+                                        <i class="ph-fill ph-map-pin text-brand-green"></i>
+                                        ${escapeHTML(item.location)}
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="text-[11px] text-slate-400 font-medium">${escapeHTML(item.date)}</span>
+                        </div>
+                        <p class="text-sm text-slate-700 leading-relaxed bg-slate-50 p-3.5 rounded-xl border border-slate-100">
+                            "${escapeHTML(item.message)}"
+                        </p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // --- CERTIFICADO ---
+        function openCertificateModal() {
+            const nameInput = document.getElementById('pledge-name').value.trim();
+            if (appState.currentUser) {
+                document.getElementById('cert-recipient-name').textContent = appState.currentUser.name;
+            } else if (nameInput) {
+                document.getElementById('cert-recipient-name').textContent = nameInput;
+            }
+            const modal = document.getElementById('cert-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeCertificateModal() {
+            const modal = document.getElementById('cert-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag]));
+        }
+    </script>
+</body>
+</html>
